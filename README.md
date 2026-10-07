@@ -90,8 +90,8 @@ La información profesional puede modificarse principalmente desde `cv.json`, ma
 ### 1. Clonar el repositorio
 
 ```bash
-git clone <URL-DE-TU-REPOSITORIO>
-cd <NOMBRE-DEL-REPOSITORIO>
+git clone https://github.com/BlackT1221/Porfolio
+cd https://github.com/BlackT1221/Porfolio
 ```
 
 ### 2. Instalar las dependencias
