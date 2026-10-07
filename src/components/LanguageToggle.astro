@@ -1,0 +1,254 @@
+---
+---
+<div class="lang-toggle no-print">
+  <button id="lang-btn" aria-label="Cambiar idioma">ES</button>
+</div>
+
+<script type="module">
+const btn = document.getElementById('lang-btn')
+function getLang(){ return localStorage.getItem('lang') || 'es' }
+function setBtnText(){ if(btn) btn.textContent = getLang().toUpperCase() }
+async function loadAndApply(lang){
+  try {
+    const file = lang === 'en' ? '/locales/cv_english.json' : '/locales/cv.json'
+    const res = await fetch(file)
+    if(!res.ok) return
+    const data = await res.json()
+    window.__CV = data
+
+    const basics = data.basics || {}
+    // Update page title and meta description
+    if(basics.name) {
+      const nameEl = document.querySelector('[data-cv="basics.name"]')
+      if(nameEl) nameEl.textContent = basics.name
+    }
+    if(basics.label) {
+      const labelEl = document.querySelector('[data-cv="basics.label"]')
+      if(labelEl) labelEl.textContent = basics.label
+    }
+    if(basics.summary) {
+      const desc = document.querySelector('meta[name="description"]')
+      if(desc) desc.setAttribute('content', basics.summary)
+      const og = document.querySelector('meta[property="og:description"]')
+      if(og) og.setAttribute('content', basics.summary)
+      const twitter = document.querySelector('meta[name="twitter:description"]')
+      if(twitter) twitter.setAttribute('content', basics.summary)
+    }
+    // update html lang attribute
+    document.documentElement.lang = lang === 'en' ? 'en' : 'es'
+  } catch (e) {
+    console.error('Failed to load locale', e)
+  }
+}
+
+function safeText(s){ return (s===null||s===undefined)?'':s }
+
+// Inline GitHub SVG to preserve icon when replacing lists client-side
+const GITHUB_SVG = `
+<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>`
+
+function renderHero(basics){
+  const nameEl = document.querySelector('[data-cv="basics.name"]')
+  if(nameEl && basics.name) nameEl.textContent = basics.name
+  const labelEl = document.querySelector('[data-cv="basics.label"]')
+  if(labelEl && basics.label) labelEl.textContent = basics.label
+  const locEl = document.querySelector('[data-cv="basics.location"]')
+  if(locEl && basics.location){
+    const city = basics.location.city || ''
+    const region = basics.location.region || ''
+    const svg = locEl.querySelector('svg')
+    locEl.innerHTML = `${svg?svg.outerHTML:''} ${city}, ${region}`
+  }
+  // contacts
+  const contacts = document.getElementById('hero-contacts')
+  if(contacts){
+    const email = basics.email
+    const phone = basics.phone
+    const profiles = basics.profiles || []
+    const footer = contacts.querySelector('footer')
+    if(footer){
+      // update email link
+      const emailA = footer.querySelector('[data-cv-contact="email"]')
+      if(emailA){
+        if(email) {
+          emailA.href = `mailto:${email}`
+          emailA.style.display = ''
+          emailA.title = `Enviar un correo a ${email}`
+        } else {
+          emailA.style.display = 'none'
+        }
+      }
+
+      // update phone link
+      const phoneA = footer.querySelector('[data-cv-contact="phone"]')
+      if(phoneA){
+        if(phone) {
+          phoneA.href = `tel:${phone}`
+          phoneA.style.display = ''
+          phoneA.title = `Llamar a ${phone}`
+        } else {
+          phoneA.style.display = 'none'
+        }
+      }
+
+      // update profile links by network
+      const profileEls = footer.querySelectorAll('[data-cv-profile]')
+      profileEls.forEach(el=>{
+        const network = el.getAttribute('data-cv-profile')
+        const match = profiles.find(p=>p.network === network)
+        if(match){
+          el.href = match.url
+          el.style.display = ''
+        } else {
+          el.style.display = 'none'
+        }
+      })
+    }
+  }
+}
+
+function renderAbout(basics){
+  const el = document.getElementById('about-summary')
+  if(el && basics.summary) el.textContent = basics.summary
+}
+
+function renderExperience(data){
+  const list = document.getElementById('experience-list')
+  if(!list || !data.work) return
+  list.innerHTML = data.work.map(w=>{
+    const startYear = new Date(w.startDate).getFullYear()
+    const endYear = w.endDate ? new Date(w.endDate).getFullYear() : (document.documentElement.lang==='en'?'Current':'Actual')
+    return `
+      <li>
+        <article>
+          <header>
+            <div>
+              <h3><a href="${safeText(w.url)}" target="_blank">${safeText(w.name)}</a></h3>
+              <h4>${safeText(w.position)}</h4>
+            </div>
+            <div>
+              <time datetime="${safeText(w.startDate)}">${startYear}</time> - <time datetime="${safeText(w.endDate)}">${endYear}</time>
+            </div>
+          </header>
+          <footer><p>${safeText(w.summary)}</p></footer>
+        </article>
+      </li>`
+  }).join('')
+}
+
+function renderEducation(data){
+  const list = document.getElementById('education-list')
+  if(!list || !data.education) return
+  list.innerHTML = data.education.map(e=>{
+    const startYear = new Date(e.startDate).getFullYear()
+    const endYear = e.endDate ? new Date(e.endDate).getFullYear() : (document.documentElement.lang==='en'?'Current':'Actual')
+    return `
+      <li>
+        <article>
+          <header>
+            <div><h3>${safeText(e.institution)}</h3></div>
+            <time>${startYear} - ${endYear}</time>
+          </header>
+          <footer><p>${safeText(e.area)}</p></footer>
+        </article>
+      </li>`
+  }).join('')
+}
+
+function renderProjects(data){
+  const list = document.getElementById('projects-list')
+  if(!list || !data.projects) return
+  list.innerHTML = data.projects.map(p=>{
+    const highlights = (p.highlights||[]).map(h=>`<span>${h}</span>`).join('')
+    const star = p.isActive ? '<span>•</span>' : ''
+    const github = p.github ? `<a class="github-code-link" href="${p.github}" target="_blank" title="Ver código fuente"><span class="sr-only">Code</span>${GITHUB_SVG}</a>` : ''
+    return `
+      <li>
+        <article>
+          <header>
+            <h3><a href="${safeText(p.url)}" target="_blank">${safeText(p.name)}</a>${star}${github}</h3>
+            <p>${safeText(p.description)}</p>
+          </header>
+          <footer>${highlights}</footer>
+        </article>
+      </li>`
+  }).join('')
+}
+
+function renderSkills(data){
+  const list = document.getElementById('skills-list')
+  if(!list || !data.skills) return
+  const existing = Array.from(list.children)
+  if (existing.length && existing.length === data.skills.length) {
+    data.skills.forEach((s, i) => {
+      const li = existing[i]
+      const span = li.querySelector('span')
+      if (span) span.textContent = safeText(s.name)
+      else li.textContent = safeText(s.name)
+    })
+    return
+  }
+
+  // fallback: preserve any existing SVG icons by mapping names
+  const iconMap = {}
+  existing.forEach(li => {
+    const span = li.querySelector('span')
+    const name = span ? span.textContent.trim() : ''
+    const svg = li.querySelector('svg')
+    iconMap[name] = svg ? svg.outerHTML : ''
+  })
+
+  list.innerHTML = data.skills.map(s => {
+    const icon = iconMap[s.name] || ''
+    return `<li>${icon}<span>${safeText(s.name)}</span></li>`
+  }).join('')
+}
+
+function renderAll(data){
+  renderHero(data.basics||{})
+  renderAbout(data.basics||{})
+  renderExperience(data)
+  renderEducation(data)
+  renderProjects(data)
+  renderSkills(data)
+}
+
+function renderSectionTitles(data){
+  const sections = (data.i18n && data.i18n.sections) || {}
+  Object.keys(sections).forEach(key => {
+    const el = document.querySelector(`h2[data-i18n="${key}"]`)
+    if(el) el.textContent = sections[key]
+  })
+}
+
+btn?.addEventListener('click', async ()=>{
+  const newLang = getLang() === 'es' ? 'en' : 'es'
+  localStorage.setItem('lang', newLang)
+  setBtnText()
+  await loadAndApply(newLang)
+  renderSectionTitles(window.__CV || {})
+  renderAll(window.__CV || {})
+})
+
+// initialize on load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', ()=> loadAndApply(getLang()).then((()=>{ setBtnText(); renderSectionTitles(window.__CV||{}); renderAll(window.__CV||{}); })))
+} else {
+  loadAndApply(getLang()).then(()=>{ setBtnText(); renderSectionTitles(window.__CV||{}); renderAll(window.__CV||{}); })
+}
+</script>
+
+<style>
+.lang-toggle {
+  display: flex;
+  gap: 0.5rem;
+}
+#lang-btn {
+  background: transparent;
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#lang-btn:hover { background: #f5f5f5 }
+</style>

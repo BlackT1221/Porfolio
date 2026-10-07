@@ -1,0 +1,346 @@
+{
+    "basics": {
+        "name": "Christian David Martínez Cruz",
+        "label": "Full Stack Developer con más de 3 años de experiencia.",
+        "image": "/me.webp",
+        "email": "cdmartinez1121@gmail.com",
+        "phone": "+57 3027111628",
+        "url": "https://nexodev.dev",
+        "summary": "+3 años de experiencia como Desarrollador Full-Stack. Actualmente trabajo como desarrollador y tech-lead en el SENA. Soy colombiano de pura cepa, de Bogotá D.C. Mi experiencia va desde desarrollador web con tecnologías como PHP puro, hasta coordinador IT en una pequeña PYME.",
+        "location": {
+            "address": "",
+            "postalCode": "111321",
+            "city": "Bogotá D.C",
+            "countryCode": "CO",
+            "region": "Colombia"
+        },
+        "profiles": [
+            {
+                "network": "LinkedIn",
+                "username": "midudev",
+                "url": "https://www.linkedin.com/in/christian-martínez-825852211 "
+            },
+            {
+                "network": "GitHub",
+                "username": "midudev",
+                "url": "https://github.com/BlackT1221"
+            }
+        ]
+    },
+    "work": [
+        {
+            "name": "SENA",
+            "position": "Desarrollador Full Stack / Technical Lead",
+            "url": "https://bienestarcba.blogspot.com/",
+            "startDate": "2026-02-01",
+            "endDate": null,
+            "summary": "Lideré la arquitectura técnica en proyectos ADSO (React Native, Flutter, Django, FastAPI) y automaticé despliegues con CI/CD (AWS/Docker), además de coordinar evaluaciones de código y hackathons mediante HackerRank.",
+            "highlights": [
+                "Started the company"
+            ]
+        },
+        {
+            "name": "Arttechnology",
+            "position": "Desarrollador FullStack",
+            "startDate": "2025-09-01",
+            "endDate": "2026-02-01",
+            "summary": "Desarrollé y mantuve una plataforma web de e-learning (PHP) e integré soluciones móviles, optimizando la experiencia del usuario y la estabilidad del sistema mediante la resolución de incidencias críticas.",
+            "highlights": [
+                "Started the company"
+            ]
+        },
+        {
+            "name": "SUMPRO S.A.S",
+            "position": "Coordinador de IT / Desarrollador FullStack",
+            "startDate": "2025-03-01",
+            "endDate": "2025-09-01",
+            "summary": "Lideré la infraestructura tecnológica de la empresa, implementando soluciones de software y hardware que mejoraron la eficiencia operativa y la seguridad de los datos, además de coordinar un equipo de desarrollo para proyectos internos.",
+            "highlights": [
+                "Started the company"
+            ]
+        },
+        {
+            "name": "Autonomic Mind",
+            "position": "Desarrollador de Software",
+            "startDate": "2023-07-01",
+            "endDate": "2024-07-01",
+            "summary": "Desarrollé soluciones web y móviles alineadas al negocio, participando en todo el ciclo de vida del software e implementando pruebas automatizadas (Python, JavaScript) para asegurar la mejora continua.",
+            "highlights": [
+                "Started the company"
+            ]
+        }
+    ],
+    "volunteer": [
+        {
+            "organization": "Organization",
+            "position": "Volunteer",
+            "url": "https://organization.com/",
+            "startDate": "2012-01-01",
+            "endDate": "2013-01-01",
+            "summary": "Description…",
+            "highlights": [
+                "Awarded 'Volunteer of the Month'"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "institution": "Corporación universitaria Ibero Americana",
+            "url": "https://www.ibero.edu.co/",
+            "area": "Ingeniero de Software",
+            "studyType": "Bachelor",
+            "startDate": "2025-02-01",
+            "endDate": null,
+            "score": "4.0",
+            "courses": [
+                "DB1101 - Basic SQL"
+            ]
+        },
+        {
+            "institution": "SENA",
+            "url": "https://www.sena.edu.co/",
+            "area": "Analista y desarrollador de software",
+            "studyType": "Bachelor",
+            "startDate": "2023-03-01",
+            "endDate": "2025-07-01",
+            "score": "4.0",
+            "courses": [
+                "DB1101 - Basic SQL"
+            ]
+        }
+    ],
+    "awards": [
+        {
+            "title": "Award",
+            "date": "2014-11-01",
+            "awarder": "Company",
+            "summary": "There is no spoon."
+        }
+    ],
+    "certificates": [
+        {
+            "name": "Certificate",
+            "date": "2021-11-07",
+            "issuer": "Company",
+            "url": "https://certificate.com"
+        }
+    ],
+    "publications": [
+        {
+            "name": "Publication",
+            "publisher": "Company",
+            "releaseDate": "2014-10-01",
+            "url": "https://publication.com",
+            "summary": "Description…"
+        }
+    ],
+    "skills": [
+        {
+            "name": "HTML",
+            "level": "Master",
+            "keywords": [
+                "Desarrollo Web",
+                "Frontend"
+            ]
+        },
+        {
+            "name": "CSS",
+            "level": "Master",
+            "keywords": [
+                "Desarrollo Web",
+                "Frontend",
+                "Diseño Responsive"
+            ]
+        },
+        {
+            "name": "JavaScript",
+            "level": "Master",
+            "keywords": [
+                "Desarrollo Web",
+                "Frontend",
+                "Backend",
+                "Fullstack"
+            ]
+        },
+        {
+            "name": "Tailwind",
+            "level": "Avanzado",
+            "keywords": [
+                "Desarrollo Web",
+                "Frontend",
+                "CSS Framework",
+                "Diseño Responsive"
+            ]
+        },
+        {
+            "name": "TypeScript",
+            "level": "Avanzado",
+            "keywords": [
+                "Desarrollo Web",
+                "Frontend",
+                "Backend",
+                "JavaScript Superset"
+            ]
+        },
+        {
+            "name": "Node",
+            "level": "Avanzado",
+            "keywords": [
+                "Desarrollo Web",
+                "Backend",
+                "JavaScript",
+                "Servidor"
+            ]
+        },
+        {
+            "name": "MySQL",
+            "level": "Avanzado",
+            "keywords": [
+                "Bases de Datos",
+                "SQL",
+                "Almacenamiento de Datos",
+                "Backend"
+            ]
+        },
+        {
+            "name": "Git",
+            "level": "Avanzado",
+            "keywords": [
+                "Control de Versiones",
+                "Colaboración",
+                "Código Fuente"
+            ]
+        },
+        {
+            "name": "GitHub",
+            "level": "Avanzado",
+            "keywords": [
+                "Control de Versiones",
+                "Colaboración",
+                "Código Fuente",
+                "Git"
+            ]
+        },
+        {
+            "name": "Next.js",
+            "level": "Avanzado",
+            "keywords": [
+                "Desarrollo Web",
+                "Frontend",
+                "React Framework",
+                "SSR",
+                "Static Generation"
+            ]
+        },
+        {
+            "name": "Flutter",
+            "level": "Avanzado",
+            "keywords": [
+                "Desarrollo Móvil",
+                "Frontend",
+                "Flutter Framework",
+                "Dart",
+                "Desarrollo Híbrido"
+            ]
+        },
+        {
+            "name": "Docker",
+            "level": "Avanzado",
+            "keywords": [
+                "Contenedores",
+                "DevOps",
+                "Despliegue de Aplicaciones"
+            ]
+        },
+        {
+            "name": "Php",
+            "level": "Avanzado",
+            "keywords": [
+                "Desarrollo Web",
+                "Backend",
+                "PHP Frameworks",
+                "Servidor"
+            ]
+        },
+        {
+            "name": "React",
+            "level": "Avanzado",
+            "keywords": [
+                "Desarrollo Web",
+                "Frontend",
+                "JavaScript Library",
+                "UI"
+            ]
+        }
+    ],
+    "languages": [
+        {
+            "language": "Spanish",
+            "fluency": "Native speaker"
+        },
+        {
+            "language": "English",
+            "fluency": "Advanced"
+        }
+    ],
+    "interests": [
+        {
+            "name": "Wildlife",
+            "keywords": [
+                "Ferrets",
+                "Unicorns"
+            ]
+        }
+    ],
+    "references": [
+        {
+            "name": "Jane Doe",
+            "reference": "Reference…"
+        }
+    ],
+    "projects": [
+        {
+            "name": "Mech-trace",
+            "isActive": true,
+            "description": "Aplicación móvil para el seguimiento de mecánicos y talleres, permitiendo a los usuarios saber en que estado está su vehículo y el progreso de las reparaciones.",
+            "highlights": [
+                "En desarrollo",
+                "Seguimiento en tiempo real",
+                "API de WhatsApp"
+            ],
+            "url": "https://github.com/BlackT1221/mech-trace",
+            "github": "https://github.com/BlackT1221/mech-trace"
+        },
+        {
+            "name": "Reportify",
+            "isActive": true,
+            "description": "API RESTful desarrollada con FastAPI y PostgreSQL para la carga, validación, almacenamiento dinámico y consulta de reportes de datos masivos.",
+            "highlights": [
+                "Microservicios y arquitectura escalable",
+                "Desarrollo de API RESTful con FastAPI y PostgreSQL"
+            ],
+            "url": "https://github.com/BlackT1221/reportify",
+            "github": "https://github.com/BlackT1221/reportify"
+        },
+        {
+            "name": "Tienda SENA",
+            "isActive": true,
+            "description": "Aplicativo web para la gestión de inventario y ventas de productos del SENA, permitiendo a los usuarios realizar compras en línea y a los administradores gestionar el stock y las transacciones.",
+            "highlights": [
+                "Gestión de inventario y ventas en línea",
+                "Desarrollo de aplicativo web con tecnologías modernas"
+            ],
+            "url": "https://github.com/ProyectoCBA72/apiProductos",
+            "github": "https://github.com/ProyectoCBA72/TiendaCBA"
+        }
+    ],
+    "i18n": {
+        "sections": {
+            "about": "Sobre mí",
+            "experience": "Experiencia laboral",
+            "education": "Educación",
+            "projects": "Proyectos",
+            "skills": "Habilidades"
+        }
+    }
+}
